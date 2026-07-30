@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nova Solicitação - Colibri</title>
+<link rel="stylesheet" href="css/style.css">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+  <div class="app-shell" id="shell">
+    <h1 class="page-title">SOLICITAÇÃO DE REFUGOS</h1>
+
+    <form id="form-solicitacao">
+      <div class="form-grid">
+        <div class="field" id="f-lote">
+          <label class="required">LOTE</label>
+          <select id="sel-lote" required></select>
+          <small class="err">Selecione um lote</small>
+        </div>
+
+        <div class="field" id="f-peca">
+          <label class="required">COD ITEM</label>
+          <select id="sel-peca" required disabled></select>
+          <small class="err">Selecione a peça</small>
+        </div>
+
+        <div class="field" style="display:flex; align-items:flex-end;">
+          <button type="submit" class="btn" id="btn-salvar">💾 SALVAR</button>
+        </div>
+
+        <div class="field" id="f-quantidade">
+          <label class="required">Quantidade</label>
+          <input type="number" id="in-quantidade" min="1" step="1" required>
+          <small class="err">Informe a quantidade</small>
+        </div>
+
+        <div class="field" id="f-data">
+          <label class="required">DATA DA SOLICITAÇÃO</label>
+          <input type="date" id="in-data" required>
+          <small class="err">Informe a data</small>
+        </div>
+
+        <div class="field" id="f-setor">
+          <label class="required">SETOR</label>
+          <select id="sel-setor" required></select>
+          <small class="err">Selecione o setor</small>
+        </div>
+
+        <div class="field" id="f-maquina">
+          <label class="required">RECURSO/MAQUINA</label>
+          <select id="sel-maquina" required disabled></select>
+          <small class="err">Selecione a máquina</small>
+        </div>
+
+        <div class="field" id="f-motivo">
+          <label class="required">MOTIVO</label>
+          <select id="sel-motivo" required disabled></select>
+          <small class="err">Selecione o motivo</small>
+        </div>
+
+        <div class="field" id="f-solicitante">
+          <label class="required">SOLICITANTE</label>
+          <input type="text" id="in-solicitante" placeholder="Seu nome" required>
+          <small class="err">Informe seu nome</small>
+        </div>
+      </div>
+
+      <div class="btn-row" style="margin-top:30px;">
+        <button type="button" class="btn btn-ghost" id="btn-limpar">🗑 Limpar</button>
+      </div>
+    </form>
+
+    <a href="index.html" class="home-fab" title="Início">🏠</a>
+  </div>
+
+  <script src="js/supabase-client.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/solicitacao.js"></script>
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Detalhe da Solicitação - Colibri</title>
+<link rel="stylesheet" href="css/style.css">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+  <div class="app-shell" id="shell">
+    <div class="detail-grid">
+      <div class="detail-field"><div class="lbl">Lote</div><div class="val" id="v-lote">-</div></div>
+      <div class="detail-field"><div class="lbl">Recurso/Máquina</div><div class="val" id="v-maquina">-</div></div>
+      <div></div>
+
+      <div class="detail-field"><div class="lbl">Peça</div><div class="val" id="v-peca">-</div></div>
+      <div class="detail-field"><div class="lbl">Solicitante</div><div class="val" id="v-solicitante">-</div></div>
+      <button class="btn" id="btn-aprovar">✓ APROVAR</button>
+
+      <div class="detail-field"><div class="lbl">Setor</div><div class="val" id="v-setor">-</div></div>
+      <div class="detail-field">
+        <div class="lbl" style="color:var(--verde-500)">FOTO</div>
+        <label class="photo-drop" id="photo-drop">
+          <span id="photo-placeholder">Toque ou clique para adicionar uma imagem</span>
+          <img id="photo-preview" class="hidden">
+          <input type="file" id="photo-input" accept="image/*">
+        </label>
+      </div>
+      <button class="btn btn-danger" id="btn-rejeitar">⊗ REJEITAR</button>
+
+      <div class="detail-field"><div class="lbl">Quantidade</div><div class="val" id="v-quantidade">-</div></div>
+      <div></div>
+      <button class="btn btn-ghost" id="btn-voltar">Voltar</button>
+
+      <div class="detail-field"><div class="lbl">Status</div><div class="val" id="v-status">-</div></div>
+
+      <div class="detail-field"><div class="lbl">Data</div><div class="val" id="v-data">-</div></div>
+
+      <div class="detail-field"><div class="lbl">Motivo</div><div class="val" id="v-motivo">-</div></div>
+    </div>
+
+    <a href="index.html" class="home-fab" title="Início">🏠</a>
+  </div>
+
+  <script src="js/supabase-client.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/detalhe.js"></script>
+</body>
+</html>

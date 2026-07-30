@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Login Inspetor - Colibri</title>
+<link rel="stylesheet" href="css/style.css">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+  <div class="app-shell" id="shell">
+    <form id="form-login" class="login-wrap">
+      <label for="in-usuario">Digite seu Usuario Abaixo</label>
+      <input type="text" id="in-usuario" placeholder="Digite seu usuario" autocomplete="username" required>
+
+      <label for="in-senha">Digite sua senha abaixo</label>
+      <input type="password" id="in-senha" placeholder="Digite sua senha" autocomplete="current-password" required>
+
+      <div class="login-actions">
+        <button type="submit" class="btn" id="btn-entrar">✈ Entrar</button>
+      </div>
+    </form>
+
+    <div class="login-logo" id="logo"></div>
+
+    <a href="index.html" class="home-fab" title="Início">🏠</a>
+  </div>
+
+  <script src="js/supabase-client.js"></script>
+  <script src="js/app.js"></script>
+  <script>
+    mountLogo("logo");
+
+    document.getElementById("form-login").addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const usuario = document.getElementById("in-usuario").value.trim();
+      const senha = document.getElementById("in-senha").value;
+      const btn = document.getElementById("btn-entrar");
+
+      if (!usuario || !senha) {
+        showToast("Preencha usuário e senha", true);
+        return;
+      }
+
+      btn.disabled = true;
+      setLoading("shell", true);
+      try {
+        const { data: tipo, error } = await supabaseClient.rpc("login_usuario", {
+          p_usuario: usuario,
+          p_senha: senha,
+        });
+        if (error) throw error;
+
+        if (tipo === "inspetor" || tipo === "ppcp" || tipo === "admin") {
+          setUsuarioLogado(usuario, tipo);
+          const destino = tipo === "ppcp" ? "producao.html" : "lista.html";
+          window.location.href = destino;
+        } else {
+          showToast("Usuário ou senha inválidos", true);
+        }
+      } catch (err) {
+        console.error(err);
+        showToast("Erro ao entrar: " + err.message, true);
+      } finally {
+        btn.disabled = false;
+        setLoading("shell", false);
+      }
+    });
+  </script>
+</body>
+</html>

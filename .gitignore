@@ -1,0 +1,6 @@
+# Nunca suba a chave secreta do Supabase
+scripts/.env
+
+# Arquivos exportados do dia a dia (não precisam ir pro repositório)
+scripts/*.xls
+scripts/*.xlsx
