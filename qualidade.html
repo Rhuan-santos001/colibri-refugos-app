@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Qualidade - Colibri</title>
+<link rel="stylesheet" href="css/style.css">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+  <div class="app-shell" id="shell">
+    <h1 class="page-title">APROVAÇÃO DA QUALIDADE</h1>
+    <p class="section-sub">Verificação de saldo no estoque da assistência antes da ordem de fabricação</p>
+
+    <div class="btn-row" style="margin-bottom:20px;">
+      <button class="btn" id="tab-pendentes">Pendentes</button>
+      <button class="btn btn-ghost" id="tab-revisadas">Já revisadas</button>
+      <span style="flex:1"></span>
+      <a href="consulta.html" class="btn btn-ghost">📊 Consulta / Índice de refugo</a>
+    </div>
+
+    <div id="lista-container"></div>
+    <div id="empty" class="empty-state hidden">Nenhuma solicitação encontrada.</div>
+
+    <div class="btn-row" style="justify-content:flex-end; margin-top:20px;">
+      <button class="btn btn-secondary" id="btn-atualizar">Atualizar</button>
+      <button class="btn" id="btn-voltar">↺ Sair</button>
+    </div>
+
+    <a href="index.html" class="home-fab" title="Início">🏠</a>
+  </div>
+
+  <script src="js/supabase-client.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/qualidade.js"></script>
+</body>
+</html>

@@ -380,13 +380,32 @@ avisar que eu adapto o login.
   fabricação ainda**. Aba "Já geradas" mostra o histórico. Clicar num
   item abre `producao_detalhe.html`, onde dá pra digitar o número da
   ordem e salvar (1 ordem por registro, independente da quantidade).
-- **consulta.html** — acessível tanto pelo PPCP quanto pelo Inspetor
-  (tem um link "📊 Consulta / Índice de refugo" nas duas telas). Filtra
-  por lote, peça, setor, máquina, status e se a ordem foi gerada ou
-  não. Mostra os registros numa tabela e, acima, um gráfico de barras
-  com a soma da quantidade refugada por setor (considerando os filtros
-  aplicados) — é o "índice de refugo por setor" pra identificar quem
-  mais está gerando refugo.
+- **consulta.html** — acessível pelo PPCP, Inspetor e Qualidade (tem um
+  link "📊 Consulta / Índice de refugo" nas telas). Filtra por lote,
+  peça, setor, máquina, status, data e se a ordem foi gerada ou não.
+  Mostra os registros numa tabela (clique numa linha pra ver o detalhe
+  completo, incluindo foto) e um gráfico de barras com a soma da
+  quantidade refugada por setor — o "índice de refugo por setor".
+
+## Perfil Qualidade (verificação de estoque da assistência)
+
+- **Acesso Qualidade** (mesmo `login.html`, redireciona sozinho pra
+  `qualidade.html`): usuário de teste `qualidade` / senha `qualidade123`
+- **qualidade.html** — lista solicitações **já aprovadas pelo inspetor**
+  aguardando revisão da Qualidade. Aba "Já revisadas" mostra o histórico.
+- **qualidade_detalhe.html** — 3 ações:
+  - **Aprovar**: não há saldo no estoque da assistência → PPCP **vai**
+    precisar gerar ordem de fabricação (esse item passa a aparecer em
+    `producao.html`)
+  - **Rejeitar**: fluxo bloqueado, não segue pro PPCP
+  - **Consumido 99**: havia saldo/sobra no estoque, pede a **quantidade
+    consumida** e grava — isso também bloqueia o PPCP de gerar ordem
+    (já foi resolvido via estoque)
+- O PPCP (`producao.html`) só lista itens onde o **inspetor aprovou E
+  a Qualidade aprovou** (sem saldo) — os outros dois desfechos da
+  Qualidade (rejeitado / consumido 99) nunca aparecem lá.
+- Rode `sql/migrate_v5_qualidade.sql` se seu banco já existia antes
+  dessa versão.
 
 ## Fluxo do app
 

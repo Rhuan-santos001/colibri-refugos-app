@@ -51,9 +51,9 @@
         });
         if (error) throw error;
 
-        if (tipo === "inspetor" || tipo === "ppcp" || tipo === "admin") {
+        if (tipo === "inspetor" || tipo === "ppcp" || tipo === "qualidade" || tipo === "admin") {
           setUsuarioLogado(usuario, tipo);
-          const destino = tipo === "ppcp" ? "producao.html" : "lista.html";
+          const destino = tipo === "ppcp" ? "producao.html" : tipo === "qualidade" ? "qualidade.html" : "lista.html";
           window.location.href = destino;
         } else {
           showToast("Usuário ou senha inválidos", true);

@@ -47,6 +47,16 @@
           </select>
         </div>
         <div class="field">
+          <label>QUALIDADE</label>
+          <select id="f-qualidade">
+            <option value="">Todos</option>
+            <option value="pendente">Pendente</option>
+            <option value="aprovado">Aprovado (sem saldo)</option>
+            <option value="rejeitado">Rejeitado</option>
+            <option value="consumido_99">Consumido 99</option>
+          </select>
+        </div>
+        <div class="field">
           <label>DATA INÍCIO</label>
           <input type="date" id="f-data-inicio">
         </div>
@@ -78,7 +88,7 @@
           <thead>
             <tr>
               <th>Lote</th><th>Peça</th><th>Setor</th><th>Máquina</th>
-              <th>Qtd</th><th>Data</th><th>Status</th><th>Ordem</th>
+              <th>Qtd</th><th>Data</th><th>Status</th><th>Qualidade</th><th>Ordem</th>
             </tr>
           </thead>
           <tbody id="tbody-resultados"></tbody>

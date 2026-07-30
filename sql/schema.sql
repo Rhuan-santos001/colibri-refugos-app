@@ -61,7 +61,7 @@ create table if not exists usuarios (
   id bigint generated always as identity primary key,
   usuario text not null unique,
   senha text not null,
-  tipo text not null default 'inspetor' check (tipo in ('inspetor','ppcp','admin')),
+  tipo text not null default 'inspetor' check (tipo in ('inspetor','ppcp','qualidade','admin')),
   created_at timestamptz not null default now()
 );
 
@@ -84,6 +84,16 @@ create table if not exists solicitacoes (
   numero_ordem text,              -- ordem de fabricação (1 por registro, gerada pelo PPCP)
   ordem_gerada_por text,
   ordem_gerada_em timestamptz,
+  -- Aprovação da Qualidade: verifica se há saldo no estoque da
+  -- assistência antes do PPCP gerar a ordem de fabricação.
+  -- 'aprovado'     = sem saldo -> PPCP PRECISA gerar ordem
+  -- 'rejeitado'    = fluxo bloqueado, não segue pro PPCP
+  -- 'consumido_99' = havia saldo/sobra, foi consumido do estoque -> bloqueia o PPCP
+  status_qualidade text not null default 'pendente'
+    check (status_qualidade in ('pendente','aprovado','rejeitado','consumido_99')),
+  qualidade_revisado_por text,
+  qualidade_revisado_em timestamptz,
+  quantidade_consumida_estoque numeric,   -- só preenchido quando status_qualidade = 'consumido_99'
   created_at timestamptz not null default now()
 );
 
@@ -91,6 +101,7 @@ create table if not exists solicitacoes (
 create index if not exists idx_solicitacoes_status on solicitacoes(status);
 create index if not exists idx_solicitacoes_created on solicitacoes(created_at desc);
 create index if not exists idx_solicitacoes_numero_ordem on solicitacoes(numero_ordem);
+create index if not exists idx_solicitacoes_status_qualidade on solicitacoes(status_qualidade);
 
 -- =========================================================
 -- ROW LEVEL SECURITY
@@ -184,6 +195,10 @@ insert into usuarios (usuario, senha, tipo) values ('inspetor', 'inspetor123', '
 
 -- Usuário PPCP de teste (troque a senha depois!)
 insert into usuarios (usuario, senha, tipo) values ('ppcp', 'ppcp123', 'ppcp')
+  on conflict do nothing;
+
+-- Usuário Qualidade de teste (troque a senha depois!)
+insert into usuarios (usuario, senha, tipo) values ('qualidade', 'qualidade123', 'qualidade')
   on conflict do nothing;
 
 -- =========================================================

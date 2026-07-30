@@ -1,9 +1,9 @@
 document.addEventListener("DOMContentLoaded", async () => {
-  exigirPerfil("ppcp", "inspetor", "admin");
+  exigirPerfil("ppcp", "inspetor", "qualidade", "admin");
   await carregarFiltros();
   document.getElementById("btn-buscar").addEventListener("click", buscar);
   document.getElementById("btn-limpar-filtros").addEventListener("click", () => {
-    ["f-lote", "f-peca", "f-setor", "f-maquina", "f-status", "f-ordem"].forEach((id) => {
+    ["f-lote", "f-peca", "f-setor", "f-maquina", "f-status", "f-ordem", "f-qualidade"].forEach((id) => {
       document.getElementById(id).value = "";
     });
     document.getElementById("f-data-inicio").value = "";
@@ -62,6 +62,7 @@ async function buscar() {
       .select(`
         id, quantidade, data_solicitacao, status, numero_ordem, solicitante,
         foto_url, revisado_por, revisado_em, ordem_gerada_por, ordem_gerada_em,
+        status_qualidade, qualidade_revisado_por, quantidade_consumida_estoque,
         peca:peca_id ( codigo ),
         maquina:maquina_id ( codigo, nome ),
         lote:lote_id ( numero ),
@@ -77,6 +78,7 @@ async function buscar() {
     const maquina = document.getElementById("f-maquina").value;
     const status = document.getElementById("f-status").value;
     const ordem = document.getElementById("f-ordem").value;
+    const qualidade = document.getElementById("f-qualidade").value;
     const dataInicio = document.getElementById("f-data-inicio").value;
     const dataFim = document.getElementById("f-data-fim").value;
 
@@ -85,6 +87,7 @@ async function buscar() {
     if (setor) query = query.eq("setor_id", setor);
     if (maquina) query = query.eq("maquina_id", maquina);
     if (status) query = query.eq("status", status);
+    if (qualidade) query = query.eq("status_qualidade", qualidade);
     if (ordem === "sim") query = query.not("numero_ordem", "is", null);
     if (ordem === "nao") query = query.is("numero_ordem", null);
     if (dataInicio) query = query.gte("data_solicitacao", dataInicio);
@@ -135,11 +138,28 @@ function renderizarTabela(data) {
       <td>${item.quantidade}</td>
       <td>${formatarData(item.data_solicitacao)}</td>
       <td><span class="status-badge status-${item.status}">${item.status}</span></td>
+      <td>${rotuloQualidadeCurto(item.status_qualidade)}</td>
       <td>${item.numero_ordem ?? "—"}</td>
     `;
     tr.addEventListener("click", () => abrirModal(item.id));
     tbody.appendChild(tr);
   });
+}
+
+function rotuloQualidadeCurto(status) {
+  const classes = {
+    pendente: "status-pendente",
+    aprovado: "status-aprovado",
+    rejeitado: "status-rejeitado",
+    consumido_99: "status-consumido99",
+  };
+  const labels = {
+    pendente: "pendente",
+    aprovado: "sem saldo",
+    rejeitado: "rejeitado",
+    consumido_99: "consumido 99",
+  };
+  return `<span class="status-badge ${classes[status] || ""}">${labels[status] || status}</span>`;
 }
 
 function abrirModal(id) {
@@ -158,6 +178,8 @@ function abrirModal(id) {
     <div class="detail-field"><div class="lbl">Motivo</div><div class="val">${item.motivo ? item.motivo.codigo + " - " + item.motivo.descricao : "-"}</div></div>
     <div class="detail-field"><div class="lbl">Status</div><div class="val"><span class="status-badge status-${item.status}">${item.status}</span></div></div>
     <div class="detail-field"><div class="lbl">Revisado por</div><div class="val">${item.revisado_por ?? "-"}</div></div>
+    <div class="detail-field"><div class="lbl">Qualidade</div><div class="val">${rotuloQualidadeCurto(item.status_qualidade)}${item.status_qualidade === "consumido_99" ? ` (qtd: ${item.quantidade_consumida_estoque ?? "-"})` : ""}</div></div>
+    <div class="detail-field"><div class="lbl">Revisado (qualidade) por</div><div class="val">${item.qualidade_revisado_por ?? "-"}</div></div>
     <div class="detail-field"><div class="lbl">Ordem de fabricação</div><div class="val">${item.numero_ordem ?? "—"}</div></div>
     <div class="detail-field"><div class="lbl">Ordem gerada por</div><div class="val">${item.ordem_gerada_por ?? "-"}</div></div>
     ${

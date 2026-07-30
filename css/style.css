@@ -207,6 +207,7 @@ h1.page-title {
 .status-pendente { background: #fff3cd; color: #8a6d00; }
 .status-aprovado { background: #d4f4e2; color: var(--verde-900); }
 .status-rejeitado { background: #fbdcd7; color: var(--erro); }
+.status-consumido99 { background: #dbe7fb; color: #1e4d8f; }
 
 .empty-state { text-align: center; padding: 60px 20px; color: var(--texto-suave); }
 

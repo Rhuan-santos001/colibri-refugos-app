@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Revisão da Qualidade - Colibri</title>
+<link rel="stylesheet" href="css/style.css">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+  <div class="app-shell" id="shell">
+    <h1 class="page-title">REVISÃO DA QUALIDADE</h1>
+
+    <div class="detail-grid">
+      <div class="detail-field"><div class="lbl">Lote</div><div class="val" id="v-lote">-</div></div>
+      <div class="detail-field"><div class="lbl">Recurso/Máquina</div><div class="val" id="v-maquina">-</div></div>
+      <div class="detail-field"><div class="lbl">Solicitante</div><div class="val" id="v-solicitante">-</div></div>
+
+      <div class="detail-field"><div class="lbl">Peça</div><div class="val" id="v-peca">-</div></div>
+      <div class="detail-field"><div class="lbl">Setor</div><div class="val" id="v-setor">-</div></div>
+      <div class="detail-field"><div class="lbl">Aprovado (inspetor) por</div><div class="val" id="v-aprovador">-</div></div>
+
+      <div class="detail-field"><div class="lbl">Quantidade</div><div class="val" id="v-quantidade">-</div></div>
+      <div class="detail-field"><div class="lbl">Data da solicitação</div><div class="val" id="v-data">-</div></div>
+      <div class="detail-field"><div class="lbl">Motivo</div><div class="val" id="v-motivo">-</div></div>
+
+      <div class="detail-field" style="grid-column: 1 / -1;">
+        <div class="lbl">Foto</div>
+        <div id="v-foto-wrap"><span class="val">Sem foto</span></div>
+      </div>
+    </div>
+
+    <div class="form-grid" style="margin-top:26px; max-width:400px;" id="wrap-qtd-consumida">
+      <div class="field" id="f-qtd-consumida" style="grid-column: 1 / -1;">
+        <label class="required">QUANTIDADE CONSUMIDA DO ESTOQUE</label>
+        <input type="number" id="in-qtd-consumida" min="1" step="1" placeholder="Necessário só pra 'Consumido 99'">
+        <small class="err">Informe a quantidade consumida</small>
+      </div>
+    </div>
+
+    <div class="btn-row" style="margin-top:24px; flex-wrap:wrap;">
+      <button class="btn" id="btn-aprovar">✓ Aprovar (sem saldo, gerar ordem)</button>
+      <button class="btn btn-secondary" id="btn-consumido99">📦 Consumido 99 (usar saldo)</button>
+      <button class="btn btn-danger" id="btn-rejeitar">✗ Rejeitar</button>
+      <button class="btn btn-ghost" id="btn-voltar">Voltar</button>
+    </div>
+
+    <a href="index.html" class="home-fab" title="Início">🏠</a>
+  </div>
+
+  <script src="js/supabase-client.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/qualidade_detalhe.js"></script>
+</body>
+</html>
