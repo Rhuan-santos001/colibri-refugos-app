@@ -6,8 +6,8 @@
 const APP_ICON_SVG = `
 <svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
   <polygon points="60,6 108,33 108,87 60,114 12,87 12,33"
-           fill="none" stroke="#2fbf82" stroke-width="7" stroke-linejoin="round"/>
-  <path d="M38 62 L54 78 L84 44" fill="none" stroke="#146c3e"
+           fill="none" stroke="#d9822b" stroke-width="7" stroke-linejoin="round"/>
+  <path d="M38 62 L54 78 L84 44" fill="none" stroke="#a85f1a"
         stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/>
 </svg>`;
 
