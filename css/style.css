@@ -51,9 +51,8 @@ h1.page-title {
 
 /* ---- Logo ---- */
 .logo-wrap { display: flex; flex-direction: column; align-items: center; margin: 40px 0; }
-.logo-wrap svg { width: 140px; height: auto; }
-.logo-wordmark { font-size: 2.4rem; font-weight: 800; color: var(--texto); margin-top: 6px; letter-spacing: -0.5px; }
-.logo-wordmark span { color: var(--verde-500); }
+.logo-wrap svg { width: 88px; height: auto; }
+.logo-wordmark { font-size: 1.4rem; font-weight: 700; font-style: italic; color: var(--texto-suave); margin-top: 10px; letter-spacing: -0.2px; }
 
 /* ---- Buttons ---- */
 .btn {
@@ -181,7 +180,7 @@ h1.page-title {
 .login-wrap input { width: 100%; padding: 12px 14px; border-radius: 6px; border: 1px solid var(--cinza-borda); background: var(--cinza-campo); margin-bottom: 18px; }
 .login-actions { display: flex; justify-content: flex-end; }
 .login-logo { display: flex; justify-content: center; margin-top: 50px; }
-.login-logo svg { width: 220px; }
+.login-logo svg { width: 90px; }
 
 /* ---- List ---- */
 .list-item {

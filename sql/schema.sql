@@ -1,5 +1,5 @@
 -- =========================================================
--- COLIBRI - Solicitação de Refugos
+-- Sistema de Solicitação de Refugos
 -- Schema para Supabase (Postgres)
 -- Rode este script inteiro em: Supabase > SQL Editor > New query
 -- =========================================================

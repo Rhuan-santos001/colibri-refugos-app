@@ -2,17 +2,18 @@
 // Helpers compartilhados por todas as páginas
 // =========================================================
 
-// ---- Logo do colibri em SVG (mesma silhueta do app original) ----
-const COLIBRI_SVG = `
-<svg viewBox="0 0 512 300" xmlns="http://www.w3.org/2000/svg" fill="#2fbf82">
-  <path d="M40 190 C 120 140, 190 120, 250 95 C 300 75, 360 55, 470 40
-           C 400 60, 340 85, 300 115 C 340 110, 400 118, 470 150
-           C 380 140, 300 150, 250 175 C 200 200, 140 215, 40 190 Z"/>
+// ---- Ícone genérico (hexágono + check, tema industrial/qualidade) ----
+const APP_ICON_SVG = `
+<svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+  <polygon points="60,6 108,33 108,87 60,114 12,87 12,33"
+           fill="none" stroke="#2fbf82" stroke-width="7" stroke-linejoin="round"/>
+  <path d="M38 62 L54 78 L84 44" fill="none" stroke="#146c3e"
+        stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/>
 </svg>`;
 
 function mountLogo(elId) {
   const el = document.getElementById(elId);
-  if (el) el.innerHTML = COLIBRI_SVG;
+  if (el) el.innerHTML = APP_ICON_SVG;
 }
 
 // ---- Toast ----
@@ -49,18 +50,18 @@ function setLoading(shellId, on) {
 
 // ---- Sessão do usuário logado (inspetor ou ppcp), guardada no navegador ----
 function setUsuarioLogado(usuario, tipo) {
-  sessionStorage.setItem("colibri_usuario", usuario);
-  sessionStorage.setItem("colibri_tipo", tipo);
+  sessionStorage.setItem("app_usuario", usuario);
+  sessionStorage.setItem("app_tipo", tipo);
 }
 function getUsuarioLogado() {
-  return sessionStorage.getItem("colibri_usuario");
+  return sessionStorage.getItem("app_usuario");
 }
 function getTipoLogado() {
-  return sessionStorage.getItem("colibri_tipo");
+  return sessionStorage.getItem("app_tipo");
 }
 function logoutUsuario() {
-  sessionStorage.removeItem("colibri_usuario");
-  sessionStorage.removeItem("colibri_tipo");
+  sessionStorage.removeItem("app_usuario");
+  sessionStorage.removeItem("app_tipo");
 }
 // Exige que o usuário logado tenha um dos tipos permitidos (ex: "ppcp",
 // ou "inspetor"). Se não, manda pro login.

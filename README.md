@@ -1,4 +1,4 @@
-# Colibri — Solicitação de Refugos (Supabase + GitHub Pages)
+# Sistema de Solicitação de Refugos (Supabase + GitHub Pages)
 
 ## ✅ Auditoria desta versão
 
@@ -286,7 +286,7 @@ antes):
 ```bash
 git init
 git add .
-git commit -m "Colibri - solicitação de refugos"
+git commit -m "Solicitação de refugos"
 git branch -M main
 git remote add origin https://github.com/SEU-USUARIO/colibri-refugos.git
 git push -u origin main

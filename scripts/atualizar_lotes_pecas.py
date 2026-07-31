@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 r"""
-Colibri - Importação diária de LOTE / COD ITEM
+Sistema de Solicitação de Refugos - Importação diária de LOTE / COD ITEM
 =================================================
 Lê o relatório exportado do sistema (ex: 2707.xls, no formato
 "RELATÓRIO DE ORDENS DE PRODUÇÃO COM LOTE" - na verdade é um HTML
