@@ -1,31 +1,26 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Solicitação de Refugos</title>
-<link rel="stylesheet" href="css/style.css">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, viewport-fit=cover" />
+<title>Gestão da Qualidade</title>
+<meta name="theme-color" content="#1B333E" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css?v=6" />
 </head>
 <body>
-  <div class="app-shell" id="shell">
-    <h1 class="page-title">SOLICITAÇÃO DE REFUGOS</h1>
 
-    <div class="logo-wrap">
-      <div id="logo"></div>
-      <div class="logo-wordmark">Gestão de Refugos</div>
-    </div>
+  <div id="toast" class="toast" aria-live="polite"></div>
 
-    <div class="access-row">
-      <button class="access-btn" onclick="window.location.href='solicitacao.html'">✈ ACESSO COLABORADOR</button>
-      <button class="access-btn" onclick="window.location.href='login.html'">✈ ACESSO INSPETOR</button>
-      <button class="access-btn" onclick="window.location.href='login.html'">✈ ACESSO QUALIDADE</button>
-      <button class="access-btn" onclick="window.location.href='login.html'">✈ ACESSO PPCP</button>
-    </div>
-
-    <a href="#" class="exit-link" onclick="return false;">⏻ Sair</a>
+  <div id="app" class="app-shell">
+    <!-- conteúdo renderizado via JS -->
   </div>
 
-  <script src="js/app.js"></script>
-  <script>mountLogo("logo");</script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
+  <script src="js/config.js?v=6"></script>
+  <script src="js/db.js?v=6"></script>
+  <script src="js/app.js?v=6"></script>
 </body>
 </html>
