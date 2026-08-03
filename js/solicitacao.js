@@ -38,7 +38,10 @@ async function carregarDropdownsIniciais() {
     });
 
     popularSelect(document.getElementById("sel-lote"),
-      lotes.data.map((l) => ({ id: l.id, label: l.numero })), "Localizar Lotes");
+      lotes.data
+        .slice()
+        .sort((a, b) => Number(b.numero) - Number(a.numero))
+        .map((l) => ({ id: l.id, label: l.numero })), "Localizar Lotes");
 
     popularSelect(document.getElementById("sel-setor"),
       setores.data.map((s) => ({ id: s.id, label: s.nome })), "Selecione o setor");

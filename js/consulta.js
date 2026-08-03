@@ -30,7 +30,10 @@ async function carregarFiltros() {
       if (r.error) throw r.error;
     });
 
-    adicionarOpcoes("f-lote", lotes.data.map((l) => ({ id: l.id, label: l.numero })));
+    adicionarOpcoes("f-lote", lotes.data
+      .slice()
+      .sort((a, b) => Number(b.numero) - Number(a.numero))
+      .map((l) => ({ id: l.id, label: l.numero })));
     adicionarOpcoes("f-peca", pecas.data.map((p) => ({ id: p.id, label: p.codigo })));
     adicionarOpcoes("f-setor", setores.data.map((s) => ({ id: s.id, label: s.nome })));
     adicionarOpcoes("f-maquina", maquinas.data.map((m) => ({ id: m.id, label: `${m.codigo} - ${m.nome}` })));
